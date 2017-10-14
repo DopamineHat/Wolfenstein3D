@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:40:48 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/14 07:06:20 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/14 13:07:27 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ static void		read_line(char *line, int y, int **map, t_env *e)
 	if (y >= e->map_height)
 		error_map();
 	line_split = ft_strsplit(line, ' ');
-	map[y] = (int *)malloc(sizeof(int *) * e->width);
+	if (!(map[y] = (int *)malloc(sizeof(int *) * e->width)))
+		error_malloc();
 	while (line_split[++x] != '\0')
 	{
 		if (!(line_split[x][0] >= '0' && line_split[x][0] <= '9'
@@ -68,7 +69,8 @@ static int		read_file(int fd, t_env *e)
 
 	y = -1;
 	read_pos(fd, e);
-	map = (int **)malloc(sizeof(int **) * e->map_height);
+	if(!(map = (int **)malloc(sizeof(int **) * e->map_height)))
+		error_malloc();
 	while (get_next_line(fd, &line) == 1)
 		read_line(line, ++y, map, e);
 	if (map[(int)e->player.pos.x][(int)e->player.pos.y] != 0)
