@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:39:38 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/14 10:26:59 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/14 12:59:45 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ t_env			*init_env(void)
 {
 	t_env	*e;
 
-	e = (t_env *)malloc(sizeof(t_env));
-	if (e == NULL)
+	if (!(e = (t_env *)malloc(sizeof(t_env))))
 		error_malloc();
 	e->width = WIDTH;
 	e->height = HEIGHT;
