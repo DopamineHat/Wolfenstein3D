@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 07:30:56 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/14 07:31:01 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/15 13:39:09 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		ray_draw(t_env *e, int x)
 	draw_line(e, x, start, end);
 }
 
-static void		ray_cal_dist(t_env *e)
+static void		ray_distance(t_env *e)
 {
 	while (e->ray.hit == 0)
 	{
@@ -108,7 +108,7 @@ void			raycasting(t_env *e)
 	{
 		ray_init(e, x);
 		ray_cal_step_side(e);
-		ray_cal_dist(e);
+		ray_distance(e);
 		ray_draw(e, x);
 	}
 }

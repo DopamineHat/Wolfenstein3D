@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:38:57 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/14 10:47:07 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/15 09:35:02 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static unsigned int	add_shader(unsigned int c, double d)
 	b = c;
 	g = c >> 8;
 	r = c >> 16;
-	d = 4 * d / 100;
+	d /= 32;
 	if (d > 0.9)
 		d = 0.9;
 	if (r > 0)
@@ -78,5 +78,5 @@ void			draw_line(t_env *e, int x, int start, int end)
 	i--;
 	while (++i < e->height)
 		ft_pixel(e, x, i, add_shader(e->color_ground,
-					abs(i - e->height) * 0.040));
+					abs(i - e->height) * 0.04));
 }

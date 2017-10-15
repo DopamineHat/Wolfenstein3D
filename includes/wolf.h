@@ -6,13 +6,14 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:46:19 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/14 10:43:31 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/15 23:03:27 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF_H
 # define WOLF_H
 
+# include "sys/time.h"
 # include "libft.h"
 # include "key_codes_macos.h"
 # include "events.h"
@@ -23,6 +24,18 @@
 
 # define WIDTH 1600
 # define HEIGHT 1200
+
+typedef struct		s_img
+{
+	void			*img0;
+	void			*img1;
+	void			*img2;
+	void			*img3;
+	void			*img4;
+	void			*img5;
+	void			*img6;
+	void			*img7;
+}					t_img;
 
 typedef struct		s_ixy
 {
@@ -69,15 +82,20 @@ typedef struct		s_mlx
 	void			*win;
 	void			*img;
 	char			*pxl;
+	int				fps;
 	int				bpp;
 	int				s_line;
 	int				ed;
-	clock_t			last_frame;
 	clock_t			next_frame;
+	char			*last_input0;
+	char			*last_input1;
+	char			*last_input2;
+	char			*last_input3;
 }					t_mlx;
 
 typedef struct		s_env
 {
+	struct s_img	image;
 	struct s_mlx	mlx;
 	struct s_player	player;
 	struct s_ray	ray;
@@ -94,6 +112,7 @@ typedef struct		s_env
 	unsigned int	color_ground;
 	int				start_x;
 	int				start_y;
+	time_t			oldtime;
 }					t_env;
 
 t_env				*init_env(void);

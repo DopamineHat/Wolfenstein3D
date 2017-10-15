@@ -6,13 +6,13 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:39:23 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/14 09:17:11 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/15 21:02:32 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-int		ft_key_move(int k, t_env *e)
+static void		ft_movements(int k, t_env *e)
 {
 	if (k == KEY_W)
 		e->player.move_up = !e->player.move_up;
@@ -22,6 +22,11 @@ int		ft_key_move(int k, t_env *e)
 		e->player.move_left = !e->player.move_left;
 	if (k == KEY_D)
 		e->player.move_right = !e->player.move_right;
+}
+
+int				ft_key_move(int k, t_env *e)
+{
+	ft_movements(k, e);
 	if (k == KEY_ESC)
 	{
 		mlx_destroy_window(e->mlx.mlx, e->mlx.win);

@@ -6,12 +6,26 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:39:38 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/15 08:43:55 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/15 23:23:39 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
+static void		init_img(t_env *e)
+{
+	int h;
+	int w;
+
+	e->image.img0 = mlx_xpm_file_to_image(e->mlx.mlx,
+				"./srcs/images/W_KEY_LITAF.xpm", &w, &h);
+	e->image.img1 = mlx_xpm_file_to_image(e->mlx.mlx,
+				"./srcs/images/S_KEY_LITAF.xpm", &w, &h);
+	e->image.img2 = mlx_xpm_file_to_image(e->mlx.mlx,
+				"./srcs/images/A_KEY_LITAF.xpm", &w, &h);
+	e->image.img3 = mlx_xpm_file_to_image(e->mlx.mlx,
+				"./srcs/images/D_KEY_LITAF.xpm", &w, &h);
+}
 static void		init_player(t_env *e)
 {
 	e->player.pos.x = 0;
@@ -30,13 +44,14 @@ static void		init_player(t_env *e)
 
 static void		init_mlx(t_env *e)
 {
+	e->mlx.fps = 0;
+	e->oldtime = time(NULL);
 	e->mlx.mlx = mlx_init();
 	e->mlx.bpp = 0;
 	e->mlx.s_line = 0;
 	e->mlx.img = mlx_new_image(e->mlx.mlx, WIDTH, HEIGHT);
 	e->mlx.pxl = mlx_get_data_addr(e->mlx.img, &(e->mlx.bpp), &(e->mlx.s_line),
 			&(e->mlx.ed));
-	e->mlx.last_frame = clock();
 	e->mlx.next_frame = 0;
 }
 
@@ -50,6 +65,7 @@ t_env			*init_env(void)
 	e->height = HEIGHT;
 	init_player(e);
 	init_mlx(e);
+	init_img(e);
 	e->color_1 =		0x8080b0;
 	e->color_2 =		0xa0a0d0;
 	e->color_3 =		0xc0c0f0;

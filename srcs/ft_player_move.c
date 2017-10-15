@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:41:04 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/14 10:45:22 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/15 14:31:42 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,32 @@ void	move_down(t_env *e)
 
 void	move_left(t_env *e)
 {
-	t_dxy	old;
+	t_dxy	last;
 
-	old.x = e->player.dir.x;
+	last.x = e->player.dir.x;
 	e->player.dir.x = e->player.dir.x * cos(e->player.speed_turn) -
 		e->player.dir.y * sin(e->player.speed_turn);
-	e->player.dir.y = old.x * sin(e->player.speed_turn) + e->player.dir.y *
+	e->player.dir.y = last.x * sin(e->player.speed_turn) + e->player.dir.y *
 		cos(e->player.speed_turn);
-	old.x = e->player.plane.x;
+	last.x = e->player.plane.x;
 	e->player.plane.x = e->player.plane.x * cos(e->player.speed_turn) -
 		e->player.plane.y * sin(e->player.speed_turn);
-	e->player.plane.y = old.x * sin(e->player.speed_turn) + e->player.plane.y *
+	e->player.plane.y = last.x * sin(e->player.speed_turn) + e->player.plane.y *
 		cos(e->player.speed_turn);
 }
 
 void	move_right(t_env *e)
 {
-	t_dxy	old;
+	t_dxy	last;
 
-	old.x = e->player.dir.x;
+	last.x = e->player.dir.x;
 	e->player.dir.x = e->player.dir.x * cos(-e->player.speed_turn) -
 		e->player.dir.y * sin(-e->player.speed_turn);
-	e->player.dir.y = old.x * sin(-e->player.speed_turn) + e->player.dir.y *
+	e->player.dir.y = last.x * sin(-e->player.speed_turn) + e->player.dir.y *
 		cos(-e->player.speed_turn);
-	old.x = e->player.plane.x;
+	last.x = e->player.plane.x;
 	e->player.plane.x = e->player.plane.x * cos(-e->player.speed_turn) -
 		e->player.plane.y * sin(-e->player.speed_turn);
-	e->player.plane.y = old.x * sin(-e->player.speed_turn) + e->player.plane.y *
+	e->player.plane.y = last.x * sin(-e->player.speed_turn) + e->player.plane.y *
 		cos(-e->player.speed_turn);
 }

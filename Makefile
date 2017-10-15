@@ -6,11 +6,11 @@
 #    By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/06 01:11:02 by rpagot            #+#    #+#              #
-#    Updated: 2017/10/14 07:02:22 by rpagot           ###   ########.fr        #
+#    Updated: 2017/10/15 23:28:14 by rpagot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := Wolfenstein3D
+NAME := wolf3d
 
 LIBFT = libft/libft.a
 
