@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:41:04 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/15 14:31:42 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/16 13:38:05 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	move_left(t_env *e)
 		e->player.dir.y * sin(e->player.speed_turn);
 	e->player.dir.y = last.x * sin(e->player.speed_turn) + e->player.dir.y *
 		cos(e->player.speed_turn);
-	last.x = e->player.plane.x;
-	e->player.plane.x = e->player.plane.x * cos(e->player.speed_turn) -
-		e->player.plane.y * sin(e->player.speed_turn);
-	e->player.plane.y = last.x * sin(e->player.speed_turn) + e->player.plane.y *
+	last.x = e->player.plan.x;
+	e->player.plan.x = e->player.plan.x * cos(e->player.speed_turn) -
+		e->player.plan.y * sin(e->player.speed_turn);
+	e->player.plan.y = last.x * sin(e->player.speed_turn) + e->player.plan.y *
 		cos(e->player.speed_turn);
 }
 
@@ -57,9 +57,9 @@ void	move_right(t_env *e)
 		e->player.dir.y * sin(-e->player.speed_turn);
 	e->player.dir.y = last.x * sin(-e->player.speed_turn) + e->player.dir.y *
 		cos(-e->player.speed_turn);
-	last.x = e->player.plane.x;
-	e->player.plane.x = e->player.plane.x * cos(-e->player.speed_turn) -
-		e->player.plane.y * sin(-e->player.speed_turn);
-	e->player.plane.y = last.x * sin(-e->player.speed_turn) + e->player.plane.y *
+	last.x = e->player.plan.x;
+	e->player.plan.x = e->player.plan.x * cos(-e->player.speed_turn) -
+		e->player.plan.y * sin(-e->player.speed_turn);
+	e->player.plan.y = last.x * sin(-e->player.speed_turn) + e->player.plan.y *
 		cos(-e->player.speed_turn);
 }

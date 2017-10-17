@@ -6,11 +6,33 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 07:30:56 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/15 13:39:09 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/17 16:00:45 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
+
+static void		ft_cal_ray_dist(t_env *e)
+{
+	if (e->map[e->ray.map.x][e->ray.map.y] > 0)
+	{
+		e->ray.hit = 1;
+		if (e->ray.hit_side == 0)
+		{
+			e->ray.dist = (e->ray.map.x - e->ray.pos.x + (1 - e->ray.step.x)
+					/ 2) / e->ray.dir.x;
+			e->mlx.stockdist[e->i] = e->ray.dist;
+			e->i++;
+		}
+		else
+		{
+			e->ray.dist = (e->ray.map.y - e->ray.pos.y + (1 - e->ray.step.y)
+					/ 2) / e->ray.dir.y;
+			e->mlx.stockdist[e->i] = e->ray.dist;
+			e->i++;
+		}
+	}
+}
 
 static void		ray_draw(t_env *e, int x)
 {
@@ -44,16 +66,7 @@ static void		ray_distance(t_env *e)
 			e->ray.map.y += e->ray.step.y;
 			e->ray.hit_side = 1;
 		}
-		if (e->map[e->ray.map.x][e->ray.map.y] > 0)
-		{
-			e->ray.hit = 1;
-			if (e->ray.hit_side == 0)
-				e->ray.dist = (e->ray.map.x - e->ray.pos.x + (1 - e->ray.step.x)
-						/ 2) / e->ray.dir.x;
-			else
-				e->ray.dist = (e->ray.map.y - e->ray.pos.y + (1 - e->ray.step.y)
-						/ 2) / e->ray.dir.y;
-		}
+		ft_cal_ray_dist(e);
 	}
 }
 
@@ -83,11 +96,12 @@ static void		ray_cal_step_side(t_env *e)
 
 static void		ray_init(t_env *e, int x)
 {
+	e->i = 0;
 	e->ray.map.x = (int)e->ray.pos.x;
 	e->ray.map.y = (int)e->ray.pos.y;
 	e->ray.cam = 2 * x / (double)e->width - 1;
-	e->ray.dir.x = e->player.dir.x + e->player.plane.x * e->ray.cam;
-	e->ray.dir.y = e->player.dir.y + e->player.plane.y * e->ray.cam;
+	e->ray.dir.x = e->player.dir.x + e->player.plan.x * e->ray.cam;
+	e->ray.dir.y = e->player.dir.y + e->player.plan.y * e->ray.cam;
 	e->ray.delta.x = sqrt(1 + (e->ray.dir.y * e->ray.dir.y) /
 			(e->ray.dir.x * e->ray.dir.x));
 	e->ray.delta.y = sqrt(1 + (e->ray.dir.x * e->ray.dir.x) /
@@ -104,6 +118,8 @@ void			raycasting(t_env *e)
 	x = -1;
 	e->ray.pos.x = e->player.pos.x;
 	e->ray.pos.y = e->player.pos.y;
+	if (!(e->mlx.stockdist = (int *)malloc(WIDTH * 2 * sizeof(int))))
+			error_malloc();
 	while (++x < e->width)
 	{
 		ray_init(e, x);

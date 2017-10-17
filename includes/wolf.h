@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:46:19 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/15 23:03:27 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/17 02:26:39 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct		s_player
 {
 	struct s_dxy	pos;
 	struct s_dxy	dir;
-	struct s_dxy	plane;
+	struct s_dxy	plan;
 	double			speed_turn;
 	double			speed_move;
 	char			move_left;
@@ -79,9 +79,14 @@ typedef struct		s_ray
 typedef struct		s_mlx
 {
 	void			*mlx;
+	void			*mlxwhite;
 	void			*win;
 	void			*img;
+	void			*white;
+	void			*yellow;
 	char			*pxl;
+	char			*pxlwhite;
+	char			*pxlyellow;
 	int				fps;
 	int				bpp;
 	int				s_line;
@@ -91,6 +96,7 @@ typedef struct		s_mlx
 	char			*last_input1;
 	char			*last_input2;
 	char			*last_input3;
+	int				*stockdist;
 }					t_mlx;
 
 typedef struct		s_env
@@ -104,6 +110,7 @@ typedef struct		s_env
 	int				**map;
 	int				map_width;
 	int				map_height;
+	int				i;
 	unsigned int	color_1;
 	unsigned int	color_2;
 	unsigned int	color_3;
@@ -113,6 +120,7 @@ typedef struct		s_env
 	int				start_x;
 	int				start_y;
 	time_t			oldtime;
+	unsigned int	time;
 }					t_env;
 
 t_env				*init_env(void);
@@ -120,6 +128,7 @@ int					ft_loop_hook(t_env *e);
 int					open_file(t_env *e, char *f);
 int					ft_key_release(int k, t_env *e);
 int					ft_key_move(int k, t_env *e);
+void				ft_pixel(t_env *e, int x, int y, unsigned int c);
 void				draw_line(t_env *e, int x, int start, int end);
 void				raycasting(t_env *e);
 void				move_left(t_env *e);
