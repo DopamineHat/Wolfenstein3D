@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 07:30:56 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/17 16:00:45 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/17 17:30:59 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,11 @@ static void		ft_cal_ray_dist(t_env *e)
 		{
 			e->ray.dist = (e->ray.map.x - e->ray.pos.x + (1 - e->ray.step.x)
 					/ 2) / e->ray.dir.x;
-			e->mlx.stockdist[e->i] = e->ray.dist;
-			e->i++;
 		}
 		else
 		{
 			e->ray.dist = (e->ray.map.y - e->ray.pos.y + (1 - e->ray.step.y)
 					/ 2) / e->ray.dir.y;
-			e->mlx.stockdist[e->i] = e->ray.dist;
-			e->i++;
 		}
 	}
 }
@@ -41,6 +37,7 @@ static void		ray_draw(t_env *e, int x)
 	int		end;
 
 	height = (int)(e->height / e->ray.dist);
+	e->mlx.stockdist[e->i++] = height;
 	start = -height / 2 + e->height / 2;
 	if (start < 0)
 		start = 0;
@@ -96,7 +93,6 @@ static void		ray_cal_step_side(t_env *e)
 
 static void		ray_init(t_env *e, int x)
 {
-	e->i = 0;
 	e->ray.map.x = (int)e->ray.pos.x;
 	e->ray.map.y = (int)e->ray.pos.y;
 	e->ray.cam = 2 * x / (double)e->width - 1;

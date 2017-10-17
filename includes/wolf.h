@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:46:19 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/17 02:26:39 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/17 17:46:05 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ void				move_right(t_env *e);
 void				move_up(t_env *e);
 void				move_down(t_env *e);
 void				move_jump(t_env *e);
+void				ft_rainprocess(t_env *e, int x);
 void				error_map(void);
 void				error_arg(void);
 void				error_malloc(void);

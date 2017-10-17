@@ -6,33 +6,35 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:41:22 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/17 15:53:41 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/17 18:18:29 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
+#include <stdio.h>
 
 static void		ft_rain(t_env *e)
 {
 	int x;
 	int y1;
 	int y2;
+	int i;
 
-	x = rand() % (WIDTH - 1);
-//	y1 = (rand() % ((e->mlx.stockdist[x] - 1) + 200)) - 200;
-	y1 = (rand() % ((HEIGHT - 1) + 200)) - 200;
-//	y2 = (rand() % ((e->mlx.stockdist[x] - 1) + 200)) - 200;
-	y2 = (rand() % ((HEIGHT - 1) + 200)) - 200;
-	if (y1 < 1)
-		y1 = 1;
-	if (y2 < 1)
-		y2 = 1;
-	while(y2-- > y1)
-		ft_pixel(e, x, y2, 0x00FFFFFF);
-	if (!y2 || !y1)
-	  return ;
-	while(y1-- > y2)
-		ft_pixel(e, x, y2, 0x00FFFFFF);
+	i = 1;
+	x = rand() % (WIDTH / 16 - 1);
+	e->i = 0;
+	while (e->i < WIDTH * 15 / 16)
+	{
+		while (e->mlx.stockdist[e->i] < 1000)
+		{
+			e->mlx.stockdist[e->i] += 200;
+			ft_rainprocess(e, x);
+		}
+		e->i += WIDTH / 16;
+		++i;
+		x = (rand() % (WIDTH / 16 - 1)) + (WIDTH / 16) * i;
+	}
+	e->i = 0;
 }
 
 static void		ft_thunder(t_env *e)
@@ -103,8 +105,7 @@ int				ft_loop_hook(t_env *e)
 	if (e->player.move_left)
 		move_left(e);
 	raycasting(e);
-	while (i++ < 40)
-		ft_rain(e);
+	ft_rain(e);
 	mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->mlx.img, 0, 0);
 	ft_display_info(e);
 	return (0);
