@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:41:22 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/18 00:12:02 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/19 00:23:00 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,31 +19,36 @@ static void		ft_rain(t_env *e)
 
 	i = 0;
 	e->i = WIDTH / 32;
-	while (e->i < WIDTH)
+	if (e->rainrate)
 	{
-		while (e->mlx.stockdist[e->i] < HEIGHT * 2)
+		while (e->i < WIDTH)
 		{
-			e->mlx.stockdist[e->i] *= e->rainrate + 1;
-			x = (rand() % (WIDTH / 16 - 1)) + (WIDTH / 16) * i + WIDTH / 32;
-			ft_rainprocess(e, x);
+			while (e->mlx.stockdist[e->i] < HEIGHT * 2)
+			{
+				e->mlx.stockdist[e->i] *= e->rainrate + 1;
+				x = (rand() % (WIDTH / 16 - 1)) + (WIDTH / 16) * i + WIDTH / 32;
+				ft_rainprocess(e, x);
+			}
+			e->i += WIDTH / 16;
+			++i;
 		}
-		e->i += WIDTH / 16;
-		++i;
 	}
 	e->i = 0;
 }
 
 static void		ft_thunder(t_env *e)
 {
-	if (e->time && !(e->time % 10) && (e->mlx.next_frame < 1))
-		mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->mlx.yellow, 0, 0);
-	if (e->time && !(e->time % 10) && (e->mlx.next_frame < 8)
-			&& e->mlx.next_frame > 2)
-		mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->mlx.white, 0, 0);
-	if (e->time && !(e->time % 10) && (e->mlx.next_frame < 15)
-			&& (e->mlx.next_frame > 12))
-		mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->mlx.white, 0, 0);
-
+	if (e->rainrate && e->rainrate < .2f)
+	{
+		if (e->time && !(e->time % 8) && (e->mlx.next_frame < 1))
+			mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->mlx.yellow, 0, 0);
+		if (e->time && !(e->time % 8) && (e->mlx.next_frame < 16)
+				&& e->mlx.next_frame > 4)
+			mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->mlx.white, 0, 0);
+		if (e->time && !(e->time % 8) && (e->mlx.next_frame < 40)
+				&& (e->mlx.next_frame > 30))
+			mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->mlx.white, 0, 0);
+	}
 }
 
 static void		ft_print_inputs(t_env *e)
@@ -79,6 +84,7 @@ static void		ft_display_info(t_env *e)
 			"TIME:");
 	mlx_string_put(e->mlx.mlx, e->mlx.win, 70, 40, 0x00FFFFFF,
 			ft_itoa((int)e->time));
+	ft_print_weather(e);
 	ft_print_inputs(e);
 	ft_thunder(e);
 }
@@ -89,6 +95,7 @@ int				ft_loop_hook(t_env *e)
 
 	i = 0;
 	e->mlx.next_frame++;
+	ft_init_colors(e);
 	if (e->player.move_up)
 		move_up(e);
 	if (e->player.move_down)

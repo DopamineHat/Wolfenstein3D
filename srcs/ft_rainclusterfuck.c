@@ -6,11 +6,44 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 17:42:31 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/17 23:51:12 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/19 00:24:44 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
+
+void		ft_print_weather(t_env *e)
+{
+	mlx_string_put(e->mlx.mlx, e->mlx.win,
+				WIDTH - 200, 10, 0x00FFFFFF, "STATUS :");
+	if (!e->rainrate)
+		mlx_string_put(e->mlx.mlx, e->mlx.win,
+				WIDTH - 110, 10, 0x00FFFF00, "sunny");
+	if (e->rainrate && e->rainrate >= 8)
+		mlx_string_put(e->mlx.mlx, e->mlx.win,
+				WIDTH - 110, 10, 0x00c0c0F0, "drizzling");
+	if (e->rainrate && e->rainrate > 1 && e->rainrate < 8)
+		mlx_string_put(e->mlx.mlx, e->mlx.win,
+				WIDTH - 110, 10, 0x008080F0, "rainy");
+	if (e->rainrate && e->rainrate <= 1 && e->rainrate > .2f)
+		mlx_string_put(e->mlx.mlx, e->mlx.win,
+				WIDTH - 110, 10, 0x004040F0, "waterflood");
+	if (e->rainrate && e->rainrate < .2f)
+		mlx_string_put(e->mlx.mlx, e->mlx.win,
+				WIDTH - 110, 10, 0x00606060, "storm");
+
+}
+
+
+void		ft_init_colors(t_env *e)
+{
+	e->color_1 =		0x505080 + e->brightness;
+	e->color_2 =		0x7070a0 + e->brightness;
+	e->color_3 =		0x9090c0 + e->brightness;
+	e->color_4 =		0x303060 + e->brightness;
+	e->color_sky =		0x000346 + e->brightness;
+	e->color_ground =	0xbf0000 + e->brightness;
+}
 
 void		ft_rainprocess(t_env *e, int x1)
 {
@@ -37,9 +70,9 @@ void		ft_rainprocess(t_env *e, int x1)
 		ft_pixel(e, x1 - 3, y1, 0x00FFFFFF);
 	}
 	while(y2-- > y1)
-		ft_pixel(e, x1, y2, 0x00FFFFFF);
+		ft_pixel(e, x1, y2, 0x80FFFFFF);
 	if (!y2 || !y1)
 	  return ;
 	while(y1-- > y2)
-		ft_pixel(e, x1, y2, 0x00FFFFFF);
+		ft_pixel(e, x1, y2, 0x80FFFFFF);
 }

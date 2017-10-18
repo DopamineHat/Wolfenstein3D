@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:39:38 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/18 00:13:04 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/18 22:05:37 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		init_thunderyellow(t_env *e)
 
 	i = -1;
 	while(++i < WIDTH * HEIGHT)
-		e->mlx.addryellow[i] = 0x0000FFFF;
+		e->mlx.addryellow[i] = 0x60FFFF00;
 }
 
 static void		init_thunder(t_env *e)
@@ -27,7 +27,7 @@ static void		init_thunder(t_env *e)
 
 	i = -1;
 	while(++i < WIDTH * HEIGHT)
-		e->mlx.addrwhite[i] = 0x00FFFFFF;
+		e->mlx.addrwhite[i] = 0x50FFFFFF;
 }
 static void		init_img(t_env *e)
 {
@@ -86,6 +86,7 @@ static void		init_mlx(t_env *e)
 	e->mlx.addrpxl = (int *)e->mlx.pxl;
 	e->mlx.next_frame = 0;
 	e->i = 0;
+	e->brightness = 0x202020;
 }
 
 t_env			*init_env(void)
@@ -99,12 +100,6 @@ t_env			*init_env(void)
 	init_player(e);
 	init_mlx(e);
 	init_img(e);
-	e->rainrate =		.5;
-	e->color_1 =		0x8080b0;
-	e->color_2 =		0xa0a0d0;
-	e->color_3 =		0xc0c0f0;
-	e->color_4 =		0x606090;
-	e->color_sky =		0x002366;
-	e->color_ground =	0xff0000;
+	e->rainrate =		1;
 	return (e);
 }

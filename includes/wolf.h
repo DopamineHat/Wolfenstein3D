@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:46:19 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/18 00:00:58 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/18 23:35:34 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ typedef struct		s_env
 	time_t			oldtime;
 	unsigned int	time;
 	float			rainrate;
+	int				brightness;
 }					t_env;
 
 t_env				*init_env(void);
@@ -141,6 +142,8 @@ void				move_up(t_env *e);
 void				move_down(t_env *e);
 void				move_jump(t_env *e);
 void				ft_rainprocess(t_env *e, int x);
+void				ft_init_colors(t_env *e);
+void				ft_print_weather(t_env *e);
 void				error_map(void);
 void				error_arg(void);
 void				error_malloc(void);
