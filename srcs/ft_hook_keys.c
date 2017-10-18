@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:39:23 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/15 21:02:32 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/18 00:42:24 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ static void		ft_movements(int k, t_env *e)
 		e->player.move_left = !e->player.move_left;
 	if (k == KEY_D)
 		e->player.move_right = !e->player.move_right;
+	if (k == KEY_PAD_SUB)
+		e->rainrate *= 1.125;
+	if (k == KEY_PAD_ADD)
+		e->rainrate *= 0.9;
 }
 
 int				ft_key_move(int k, t_env *e)

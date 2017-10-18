@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:46:19 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/17 17:46:05 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/18 00:00:58 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,9 @@ typedef struct		s_mlx
 	char			*pxl;
 	char			*pxlwhite;
 	char			*pxlyellow;
+	int				*addrpxl;
+	int				*addrwhite;
+	int				*addryellow;
 	int				fps;
 	int				bpp;
 	int				s_line;
@@ -121,6 +124,7 @@ typedef struct		s_env
 	int				start_y;
 	time_t			oldtime;
 	unsigned int	time;
+	float			rainrate;
 }					t_env;
 
 t_env				*init_env(void);

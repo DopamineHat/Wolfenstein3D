@@ -6,28 +6,25 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:41:22 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/17 19:14:46 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/18 00:12:02 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
-#include <stdio.h>
 
 static void		ft_rain(t_env *e)
 {
 	int x;
-	int y1;
-	int y2;
 	int i;
 
 	i = 0;
-	e->i = 0;
-	while (i < 16)
+	e->i = WIDTH / 32;
+	while (e->i < WIDTH)
 	{
-		while (e->mlx.stockdist[e->i] < 1200)
+		while (e->mlx.stockdist[e->i] < HEIGHT * 2)
 		{
-			e->mlx.stockdist[e->i] *= 1.4;
-			x = (rand() % (WIDTH / 16 - 1)) + (WIDTH / 16) * i;
+			e->mlx.stockdist[e->i] *= e->rainrate + 1;
+			x = (rand() % (WIDTH / 16 - 1)) + (WIDTH / 16) * i + WIDTH / 32;
 			ft_rainprocess(e, x);
 		}
 		e->i += WIDTH / 16;
@@ -51,9 +48,6 @@ static void		ft_thunder(t_env *e)
 
 static void		ft_print_inputs(t_env *e)
 {
-	int w;
-	int h;
-
 	if (e->player.move_up != 0)
 		mlx_put_image_to_window(e->mlx.mlx, e->mlx.win,
 				e->image.img0, 110, 1000);

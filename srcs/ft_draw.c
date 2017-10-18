@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:38:57 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/17 16:48:20 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/17 23:08:02 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 
 void			ft_pixel(t_env *e, int x, int y, unsigned int c)
 {
-	int		i;
-
-	i = (x * 4) + (y * e->mlx.s_line);
-	e->mlx.pxl[i] = c;
-	e->mlx.pxl[++i] = c >> 8;
-	e->mlx.pxl[++i] = c >> 16;
+	e->mlx.addrpxl[x + y * WIDTH] = c;
 }
 
 unsigned int	get_color(t_env *e)
