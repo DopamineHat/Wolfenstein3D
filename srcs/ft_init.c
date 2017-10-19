@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:39:38 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/18 22:05:37 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/19 04:09:34 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		init_thunderyellow(t_env *e)
 
 	i = -1;
 	while(++i < WIDTH * HEIGHT)
-		e->mlx.addryellow[i] = 0x60FFFF00;
+		e->mlx.addryellow[i] = 0x40FFFF00;
 }
 
 static void		init_thunder(t_env *e)
@@ -27,7 +27,7 @@ static void		init_thunder(t_env *e)
 
 	i = -1;
 	while(++i < WIDTH * HEIGHT)
-		e->mlx.addrwhite[i] = 0x50FFFFFF;
+		e->mlx.addrwhite[i] = 0xa0FFFFFF;
 }
 static void		init_img(t_env *e)
 {
