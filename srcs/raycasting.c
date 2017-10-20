@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 07:30:56 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/17 17:30:59 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/20 10:19:09 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void			raycasting(t_env *e)
 	e->ray.pos.x = e->player.pos.x;
 	e->ray.pos.y = e->player.pos.y;
 	if (!(e->mlx.stockdist = (int *)malloc(WIDTH * 2 * sizeof(int))))
-			error_malloc();
+		error_malloc();
 	while (++x < e->width)
 	{
 		ray_init(e, x);
@@ -123,4 +123,5 @@ void			raycasting(t_env *e)
 		ray_distance(e);
 		ray_draw(e, x);
 	}
+	free(e->mlx.stockdist);
 }
