@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:39:38 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/19 04:09:34 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/20 06:10:56 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ static void		init_player(t_env *e)
 	e->player.dir.x = -1;
 	e->player.dir.y = 0;
 	e->player.plan.x = 0;
-	e->player.plan.y = 0.66;
-	e->player.speed_turn = 0.0625;
-	e->player.speed_move = 0.0625;
+	e->player.plan.y = 0.66f;
+	e->player.speed_turn = 0.04f;
+	e->player.speed_move = 0.0625f;
 	e->player.move_up = 0;
 	e->player.move_down = 0;
 	e->player.move_right = 0;

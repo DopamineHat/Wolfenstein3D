@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:41:22 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/19 04:01:14 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/20 07:08:15 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		ft_rain(t_env *e)
 	int i;
 
 	i = 0;
-	e->i = WIDTH / 32;
+	e->i = WIDTH / 64;
 	if (e->rainrate)
 	{
 		while (e->i < WIDTH)
@@ -26,10 +26,10 @@ static void		ft_rain(t_env *e)
 			while (e->mlx.stockdist[e->i] < HEIGHT * 2)
 			{
 				e->mlx.stockdist[e->i] *= e->rainrate + 1;
-				x = (rand() % (WIDTH / 16 - 1)) + (WIDTH / 16) * i + WIDTH / 32;
+				x = (rand() % (WIDTH / 32 - 1)) + (WIDTH / 32) * i + WIDTH / 64;
 				ft_rainprocess(e, x);
 			}
-			e->i += WIDTH / 16;
+			e->i += WIDTH / 32;
 			++i;
 		}
 	}
