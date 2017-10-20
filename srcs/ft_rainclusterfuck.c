@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 17:42:31 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/20 01:02:40 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/20 02:22:20 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,20 @@ void		ft_rainprocess(t_env *e, int x1)
 		ft_pixel(e, x1 - 3, y2, 0x00FFFFFF);
 	}
 	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24)
-				&& (y2 > HEIGHT / 2) && (y2 < HEIGHT * 5 / 8))
+				&& (y2 > HEIGHT * 9 / 16) && (y2 <= HEIGHT * 5 / 8))
 	{
 		ft_pixel(e, x1 + 1, y2 - 1, 0x00FFFFFF);
 		ft_pixel(e, x1 - 1, y2 - 1, 0x00FFFFFF);
 	}
-	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24))
+	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24)
+				&& (y2 > HEIGHT * 5 / 8))
 	{
 		ft_pixel(e, x1, y2 + 2, 0x00FFFFFF);
 		ft_pixel(e, x1 + 2, y2, 0x00FFFFFF);
 		ft_pixel(e, x1 - 2, y2, 0x00FFFFFF);
 	}
+	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24))
+		ft_pixel(e, x1, y2, 0x00FFFFFF);
 	while(y2-- > y1)
 		ft_pixel(e, x1, y2, 0xa0FFFFFF);
 	if (!y2 || !y1)
