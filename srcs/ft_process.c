@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:41:22 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/21 16:49:12 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/21 18:56:27 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ static void		ft_display_info(t_env *e)
 	free (tmp);
 	ft_print_inputs(e);
 	ft_print_weather(e);
+	ft_print_position(e);
 }
 
 int				ft_loop_hook(t_env *e)
@@ -112,5 +113,6 @@ int				ft_loop_hook(t_env *e)
 	mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->mlx.img, 0, 0);
 	ft_display_info(e);
 	ft_thunder(e);
+	free(e->mlx.stockdist);
 	return (0);
 }

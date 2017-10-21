@@ -6,7 +6,7 @@
 #    By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/21 17:52:50 by rpagot            #+#    #+#              #
-#    Updated: 2017/10/21 17:53:54 by rpagot           ###   ########.fr        #
+#    Updated: 2017/10/21 18:27:46 by rpagot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 SHELL = /bin/zsh
 CC		=	@gcc $(FLAGS)
-FLAGS	=	-Wall -Wextra -Werror #-fsanitize=address -g3
+FLAGS	=	-Wall -Wextra -Werror -Ofast -march=native
 NAME	=	libft.a
 INCLUDES=	./includes
 TIME    =   0

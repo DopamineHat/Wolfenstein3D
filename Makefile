@@ -6,7 +6,7 @@
 #    By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/06 01:11:02 by rpagot            #+#    #+#              #
-#    Updated: 2017/10/21 17:53:30 by rpagot           ###   ########.fr        #
+#    Updated: 2017/10/21 18:27:25 by rpagot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ NAME := wolf3d
 
 LIBFT = libft/libft.a
 
-CFLAGS := -Wall -Wextra -Werror #-g3 -fsanitize=address
+CFLAGS := -Wall -Wextra -Werror -Ofast -march=native
 LCFLAGS := -L./minilibx_macos -lmlx -framework OpenGL \
-		-framework Appkit #-g3 -fsanitize=address
+		-framework Appkit -fsanitize=address -Ofast -march=native
 
 
 

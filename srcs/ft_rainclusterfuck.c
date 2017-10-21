@@ -6,12 +6,29 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 17:42:31 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/21 16:22:40 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/21 19:34:49 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
+void		ft_print_position(t_env *e)
+{
+	char *tmp;
+
+	mlx_string_put(e->mlx.mlx, e->mlx.win, WIDTH - 220, 50, 0x00FFFFFF,
+			"POSITION :");
+	tmp = ft_itoa(e->player.pos.y);
+	mlx_string_put(e->mlx.mlx, e->mlx.win, WIDTH - 110, 50, 0x00FFFFFF,
+			tmp);
+	mlx_string_put(e->mlx.mlx, e->mlx.win, WIDTH - 80, 50, 0x00FFFFFF,
+			",");
+	free(tmp);
+	tmp = ft_itoa(e->player.pos.x);
+	mlx_string_put(e->mlx.mlx, e->mlx.win, WIDTH - 60, 50, 0x00FFFFFF,
+			tmp);
+	free(tmp);
+}
 void		ft_print_weather(t_env *e)
 {
 	mlx_string_put(e->mlx.mlx, e->mlx.win,
@@ -50,33 +67,35 @@ void		ft_rainprocess(t_env *e, int x1)
 	int y2;
 
 	x1 -= WIDTH / 64;
-	y1 = ((rand() % (((HEIGHT * 7 / 8) - 8) + 50)) - 50);
+	y1 = ((rand() % (((HEIGHT)) + 50)) - 50);
 	y2 = ((rand() % (HEIGHT / 8)) + y1);
+	if (y2 >= HEIGHT)
+		y2 = HEIGHT - 1;
 	if (y1 < 1)
 		y1 = 1;
 	if (y2 < 1)
 		y2 = 1;
 	if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24)
-				&& (y2 > HEIGHT * 3 / 4))
+				&& (y2 > HEIGHT * 3 / 4) && y2 < HEIGHT - 4)
 	{
 		ft_pixel(e, x1, y2 + 3, 0x00FFFFFF);
 		ft_pixel(e, x1 + 3, y2, 0x00FFFFFF);
 		ft_pixel(e, x1 - 3, y2, 0x00FFFFFF);
 	}
 	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24)
-				&& (y2 > HEIGHT * 9 / 16) && (y2 <= HEIGHT * 5 / 8))
-	{
-		ft_pixel(e, x1 + 1, y2 - 1, 0x00FFFFFF);
-		ft_pixel(e, x1 - 1, y2 - 1, 0x00FFFFFF);
-	}
-	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24)
-				&& (y2 > HEIGHT * 5 / 8))
+				&& (y2 > HEIGHT * 5 / 8) && y2 <= HEIGHT * 3 / 4)
 	{
 		ft_pixel(e, x1, y2 + 2, 0x00FFFFFF);
 		ft_pixel(e, x1 + 2, y2, 0x00FFFFFF);
 		ft_pixel(e, x1 - 2, y2, 0x00FFFFFF);
 	}
-	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24))
+	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24)
+				&& (y2 > HEIGHT * 9 / 16) && y2 <= HEIGHT * 5 / 8)
+	{
+		ft_pixel(e, x1 + 1, y2 - 1, 0x00FFFFFF);
+		ft_pixel(e, x1 - 1, y2 - 1, 0x00FFFFFF);
+	}
+	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24) && y2 <= HEIGHT * 9 / 16)
 		ft_pixel(e, x1, y2, 0x00FFFFFF);
 	while(y2-- > y1)
 		ft_pixel(e, x1, y2, 0xa0FFFFFF);

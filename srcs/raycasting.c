@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 07:30:56 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/21 16:33:38 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/21 18:04:44 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,4 @@ void			raycasting(t_env *e)
 		ray_distance(e);
 		ray_draw(e, x);
 	}
-	free(e->mlx.stockdist);
 }
