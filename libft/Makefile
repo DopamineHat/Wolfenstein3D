@@ -3,17 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+         #
+#    By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/11/10 00:16:21 by adeletan          #+#    #+#              #
-#    Updated: 2017/03/15 19:05:02 by adeletan         ###   ########.fr        #
+#    Created: 2017/10/21 17:52:50 by rpagot            #+#    #+#              #
+#    Updated: 2017/10/21 17:53:54 by rpagot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 .SUFFIXES: .SHELL
 
 SHELL = /bin/zsh
 CC		=	@gcc $(FLAGS)
-FLAGS	=	-Wall -Wextra -Werror
+FLAGS	=	-Wall -Wextra -Werror #-fsanitize=address -g3
 NAME	=	libft.a
 INCLUDES=	./includes
 TIME    =   0

@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:40:48 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/20 11:06:08 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/21 17:56:01 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ static void		read_pos(int fd, t_env *e)
 			e->player.pos.y < 0 || e->player.pos.x >= e->map_width ||
 			e->player.pos.y >= e->map_width)
 		error_map();
-
+	free (line);
+	while (i >= 0)
+		free(line_split[i--]);
+	free(line_split);
 }
 
 static void		read_line(char *line, int y, t_env *e)
@@ -57,9 +60,16 @@ static void		read_line(char *line, int y, t_env *e)
 		if ((x == 0 || x == e->map_width - 1 || y == 0 || y == e->map_height -
 					1) && e->map[y][x] == 0)
 			error_map();
+		free(line_split[x]);
 	}
+	free(line_split[x]);
+	free(line_split);
 	if (x != e->map_width)
+	{
+		free(line);
 		error_map();
+	}
+	free(line);
 }
 
 static int		read_file(int fd, t_env *e)

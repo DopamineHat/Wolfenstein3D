@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 17:42:31 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/20 07:08:30 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/21 16:22:40 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void		ft_rainprocess(t_env *e, int x1)
 	int y2;
 
 	x1 -= WIDTH / 64;
-	y1 = ((rand() % ((HEIGHT - 1) + 50)) - 50);
-	y2 = (rand() % (HEIGHT / 8)) + y1;
+	y1 = ((rand() % (((HEIGHT * 7 / 8) - 8) + 50)) - 50);
+	y2 = ((rand() % (HEIGHT / 8)) + y1);
 	if (y1 < 1)
 		y1 = 1;
 	if (y2 < 1)

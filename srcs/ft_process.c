@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:41:22 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/20 10:50:11 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/21 16:49:12 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ static void		ft_display_info(t_env *e)
 	}
 	mlx_string_put(e->mlx.mlx, e->mlx.win, 10, 10, 0x00FFFFFF,
 			"FPS:");
-	if (!(tmp = (char *)malloc(8 * sizeof(char))))
-		return ;
 	tmp = ft_itoa((int)e->mlx.fps);
 	mlx_string_put(e->mlx.mlx, e->mlx.win, 60, 10, 0x00FFFFFF, tmp);
 	mlx_string_put(e->mlx.mlx, e->mlx.win, 10, 40, 0x00FFFFFF,

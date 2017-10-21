@@ -6,7 +6,7 @@
 /*   By: adespond <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/16 11:32:27 by adespond          #+#    #+#             */
-/*   Updated: 2017/10/20 11:09:35 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/21 17:07:26 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int				main(int argc, char **argv)
 	mlx_hook(e->mlx.win, KEYPRESS, KEYPRESSMASK, ft_key_move, e);
 	mlx_key_hook(e->mlx.win, ft_key_move, e);
 	mlx_loop(e->mlx.mlx);
-	free (e);
+	free(e);
 	return (0);
 }

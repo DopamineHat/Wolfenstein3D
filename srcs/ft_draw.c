@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:38:57 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/17 23:08:02 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/21 16:14:30 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void			ft_pixel(t_env *e, int x, int y, unsigned int c)
 {
+	//if (x + y * WIDTH < WIDTH * HEIGHT)
 	e->mlx.addrpxl[x + y * WIDTH] = c;
 }
 

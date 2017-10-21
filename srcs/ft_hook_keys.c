@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:39:23 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/18 22:23:31 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/21 17:10:27 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int				ft_key_move(int k, t_env *e)
 	if (k == KEY_ESC)
 	{
 		mlx_destroy_window(e->mlx.mlx, e->mlx.win);
+		free(e);
 		exit(0);
 	}
 	if (e->rainrate)
