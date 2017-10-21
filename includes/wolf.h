@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:46:19 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/21 18:57:46 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/21 20:23:18 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <time.h>
 # include <fcntl.h>
 
-# define WIDTH 1600
-# define HEIGHT 1200
+# define WIDTH 2560
+# define HEIGHT 1300
 
 typedef struct		s_img
 {

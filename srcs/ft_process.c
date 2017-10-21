@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:41:22 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/21 18:56:27 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/21 20:06:48 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,16 @@ static void		ft_print_inputs(t_env *e)
 {
 	if (e->player.move_up != 0)
 		mlx_put_image_to_window(e->mlx.mlx, e->mlx.win,
-				e->image.img0, 110, 1000);
+				e->image.img0, 110, HEIGHT - 200);
 	if (e->player.move_down != 0)
 		mlx_put_image_to_window(e->mlx.mlx, e->mlx.win,
-				e->image.img1, 110, 1080);
+				e->image.img1, 110, HEIGHT - 120);
 	if (e->player.move_left != 0)
 		mlx_put_image_to_window(e->mlx.mlx, e->mlx.win,
-				e->image.img2, 30, 1080);
+				e->image.img2, 30, HEIGHT - 120);
 	if (e->player.move_right != 0)
 		mlx_put_image_to_window(e->mlx.mlx, e->mlx.win,
-				e->image.img3, 190, 1080);
+				e->image.img3, 190, HEIGHT - 120);
 }
 
 static void		ft_display_info(t_env *e)
