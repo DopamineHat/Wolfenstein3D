@@ -6,29 +6,11 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 07:30:56 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/21 18:04:44 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/23 05:59:12 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
-
-static void		ft_cal_ray_dist(t_env *e)
-{
-	if (e->map[e->ray.map.x][e->ray.map.y] > 0)
-	{
-		e->ray.hit = 1;
-		if (e->ray.hit_side == 0)
-		{
-			e->ray.dist = (e->ray.map.x - e->ray.pos.x + (1 - e->ray.step.x)
-					/ 2) / e->ray.dir.x;
-		}
-		else
-		{
-			e->ray.dist = (e->ray.map.y - e->ray.pos.y + (1 - e->ray.step.y)
-					/ 2) / e->ray.dir.y;
-		}
-	}
-}
 
 static void		ray_draw(t_env *e, int x)
 {

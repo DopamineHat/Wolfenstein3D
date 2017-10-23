@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:46:19 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/23 05:46:00 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/23 06:00:30 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ int					ft_loop_hook(t_env *e);
 int					open_file(t_env *e, char *f);
 int					ft_key_release(int k, t_env *e);
 int					ft_key_move(int k, t_env *e);
+void				ft_cal_ray_dist(t_env *e);
 void				ft_rain(t_env *e);
 void				init_thunderyellow(t_env *e);
 void				init_thunder(t_env *e);

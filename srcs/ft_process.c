@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:41:22 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/23 05:45:14 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/23 06:02:02 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void			ft_rain(t_env *e)
 {
-	int x;
-	int i;
-	float stockdist;
+	int		x;
+	int		i;
+	float	stockdist;
 
 	i = 0;
 	e->i = WIDTH / 64;
