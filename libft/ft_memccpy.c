@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 19:23:29 by adeletan          #+#    #+#             */
-/*   Updated: 2016/11/24 02:30:53 by adeletan         ###   ########.fr       */
+/*   Created: 2016/11/18 21:36:54 by rpagot            #+#    #+#             */
+/*   Updated: 2016/11/18 21:36:57 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+void	*ft_memccpy(void *restrict dst, const void *restrict src,
+		int c, size_t n)
 {
-	unsigned char	*patate;
-	unsigned char	*carotte;
-	size_t			index;
+	size_t i;
 
-	patate = (unsigned char*)dst;
-	carotte = (unsigned char*)src;
-	index = 0;
-	while (n--)
+	i = 0;
+	while (i < n)
 	{
-		patate[index] = carotte[index];
-		if (patate[index] == (unsigned char)c)
-			return (&patate[index + 1]);
-		++index;
+		*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
+		if ((unsigned char)c == *(unsigned char *)(src + i))
+			return ((unsigned char *)dst + i + 1);
+		++i;
 	}
-	dst = patate;
 	return (NULL);
 }

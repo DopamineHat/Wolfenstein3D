@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:46:19 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/21 20:23:18 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/23 05:46:00 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 # include "libft.h"
 # include "key_codes_macos.h"
 # include "events.h"
+# include <pthread.h>
 # include <mlx.h>
 # include <math.h>
 # include <time.h>
 # include <fcntl.h>
 
-# define WIDTH 2560
-# define HEIGHT 1300
+# define WIDTH 1600
+# define HEIGHT 1200
 
 typedef struct		s_img
 {
@@ -114,6 +115,8 @@ typedef struct		s_env
 	int				map_width;
 	int				map_height;
 	int				i;
+	int				x1;
+	int				x2;
 	unsigned int	color_1;
 	unsigned int	color_2;
 	unsigned int	color_3;
@@ -133,6 +136,9 @@ int					ft_loop_hook(t_env *e);
 int					open_file(t_env *e, char *f);
 int					ft_key_release(int k, t_env *e);
 int					ft_key_move(int k, t_env *e);
+void				ft_rain(t_env *e);
+void				init_thunderyellow(t_env *e);
+void				init_thunder(t_env *e);
 void				ft_pixel(t_env *e, int x, int y, unsigned int c);
 void				draw_line(t_env *e, int x, int start, int end);
 void				raycasting(t_env *e);
@@ -145,6 +151,7 @@ void				ft_rainprocess(t_env *e, int x);
 void				ft_init_colors(t_env *e);
 void				ft_print_weather(t_env *e);
 void				ft_print_position(t_env *e);
+void				ft_manage_threads(t_env *e);
 void				error_map(void);
 void				error_arg(void);
 void				error_malloc(void);

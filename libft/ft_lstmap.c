@@ -3,36 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 23:46:04 by adeletan          #+#    #+#             */
-/*   Updated: 2016/11/24 02:30:21 by adeletan         ###   ########.fr       */
+/*   Created: 2016/11/18 21:34:30 by rpagot            #+#    #+#             */
+/*   Updated: 2016/11/18 21:34:32 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f) (t_list *elem))
+t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list *result;
-	t_list *temp;
-	t_list *temp2;
+	t_list *prev;
+	t_list *new;
 
-	if (!lst || !f)
+	if (!lst)
 		return (NULL);
-	temp2 = f(lst);
-	if ((result = ft_lstnew(temp2->content, temp2->content_size)))
+	if (!(new = ft_lstnew(lst->content, lst->content_size)))
+		return (NULL);
+	new = f(lst);
+	prev = new;
+	while (lst->next)
 	{
-		temp = result;
+		prev->next = f(lst->next);
+		prev = prev->next;
 		lst = lst->next;
-		while (lst)
-		{
-			temp2 = f(lst);
-			if (!(temp->next = ft_lstnew(temp2->content, temp2->content_size)))
-				return (NULL);
-			temp = temp->next;
-			lst = lst->next;
-		}
 	}
-	return (result);
+	return (new);
 }

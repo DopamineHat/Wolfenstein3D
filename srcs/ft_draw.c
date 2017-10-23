@@ -6,18 +6,18 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:38:57 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/21 19:57:34 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/23 04:42:28 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-void			ft_pixel(t_env *e, int x, int y, unsigned int c)
+void					ft_pixel(t_env *e, int x, int y, unsigned int c)
 {
 	e->mlx.addrpxl[x + y * WIDTH] = c;
 }
 
-unsigned int	get_color(t_env *e)
+unsigned int			get_color(t_env *e)
 {
 	if (e->ray.hit_side == 1)
 	{
@@ -36,7 +36,7 @@ unsigned int	get_color(t_env *e)
 	return (0);
 }
 
-static unsigned int	add_shader(unsigned int c, double d)
+static unsigned int		add_shader(unsigned int c, double d)
 {
 	unsigned char	r;
 	unsigned char	g;
@@ -57,7 +57,7 @@ static unsigned int	add_shader(unsigned int c, double d)
 	return ((r << 16) + (g << 8) + b);
 }
 
-void			draw_line(t_env *e, int x, int start, int end)
+void					draw_line(t_env *e, int x, int start, int end)
 {
 	int				i;
 	unsigned int	c;

@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swap_ptr.c                                      :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/12 02:17:11 by adeletan          #+#    #+#             */
-/*   Updated: 2016/11/24 02:40:51 by adeletan         ###   ########.fr       */
+/*   Created: 2016/11/17 17:57:24 by rpagot            #+#    #+#             */
+/*   Updated: 2016/11/17 18:03:58 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_swap_ptr(char **a, char **b)
-{
-	char *c;
+#include "stdio.h"
 
-	c = *a;
-	*a = *b;
-	*b = c;
+int		ft_sqrt(int x)
+{
+	int i;
+
+	i = 0;
+	while (i * i <= x)
+		++i;
+	return (--i);
 }

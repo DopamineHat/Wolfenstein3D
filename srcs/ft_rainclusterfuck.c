@@ -5,8 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/23 02:08:58 by rpagot            #+#    #+#             */
+/*   Updated: 2017/10/23 02:09:08 by rpagot           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_rainclusterfuck.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 17:42:31 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/21 19:34:49 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/23 02:06:34 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +41,7 @@ void		ft_print_position(t_env *e)
 			tmp);
 	free(tmp);
 }
+
 void		ft_print_weather(t_env *e)
 {
 	mlx_string_put(e->mlx.mlx, e->mlx.win,
@@ -50,15 +63,33 @@ void		ft_print_weather(t_env *e)
 				WIDTH - 110, 10, 0x00606060, "storm");
 }
 
-
-void		ft_init_colors(t_env *e)
+void		ft_raindrops(t_env *e, int y2, int x1)
 {
-	e->color_1 =		0x505080 + e->brightness;
-	e->color_2 =		0x7070a0 + e->brightness;
-	e->color_3 =		0x9090c0 + e->brightness;
-	e->color_4 =		0x303060 + e->brightness;
-	e->color_sky =		0x000346 + e->brightness;
-	e->color_ground =	0x00bf00 + e->brightness;
+	if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24)
+				&& (y2 > HEIGHT * 3 / 4) && y2 < HEIGHT - 4)
+	{
+		e->mlx.addrpxl[x1 + (y2 + 3) * WIDTH] = 0x00FFFFFF;
+		e->mlx.addrpxl[x1 + 3 + y2 * WIDTH] = 0x00FFFFFF;
+		e->mlx.addrpxl[x1 - 3 + y2 * WIDTH] = 0x00FFFFFF;
+	}
+	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24)
+				&& (y2 > HEIGHT * 5 / 8) && y2 <= HEIGHT * 3 / 4)
+	{
+		ft_pixel(e, x1, y2 + 2, 0x00FFFFFF);
+		ft_pixel(e, x1 + 2, y2, 0x00FFFFFF);
+		ft_pixel(e, x1 - 2, y2, 0x00FFFFFF);
+		e->mlx.addrpxl[x1 + (y2 + 2) * WIDTH] = 0x00FFFFFF;
+		e->mlx.addrpxl[x1 + 2 + y2 * WIDTH] = 0x00FFFFFF;
+		e->mlx.addrpxl[x1 - 2 + y2 * WIDTH] = 0x00FFFFFF;
+	}
+	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24)
+				&& (y2 > HEIGHT * 9 / 16) && y2 <= HEIGHT * 5 / 8)
+	{
+		e->mlx.addrpxl[x1 + 1 + (y2 - 1) * WIDTH] = 0x00FFFFFF;
+		e->mlx.addrpxl[x1 - 1 + (y2 - 1) * WIDTH] = 0x00FFFFFF;
+	}
+	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24) && y2 <= HEIGHT * 9 / 16)
+		e->mlx.addrpxl[x1 + y2 * WIDTH] = 0x00FFFFFF;
 }
 
 void		ft_rainprocess(t_env *e, int x1)
@@ -75,32 +106,11 @@ void		ft_rainprocess(t_env *e, int x1)
 		y1 = 1;
 	if (y2 < 1)
 		y2 = 1;
-	if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24)
-				&& (y2 > HEIGHT * 3 / 4) && y2 < HEIGHT - 4)
-	{
-		ft_pixel(e, x1, y2 + 3, 0x00FFFFFF);
-		ft_pixel(e, x1 + 3, y2, 0x00FFFFFF);
-		ft_pixel(e, x1 - 3, y2, 0x00FFFFFF);
-	}
-	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24)
-				&& (y2 > HEIGHT * 5 / 8) && y2 <= HEIGHT * 3 / 4)
-	{
-		ft_pixel(e, x1, y2 + 2, 0x00FFFFFF);
-		ft_pixel(e, x1 + 2, y2, 0x00FFFFFF);
-		ft_pixel(e, x1 - 2, y2, 0x00FFFFFF);
-	}
-	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24)
-				&& (y2 > HEIGHT * 9 / 16) && y2 <= HEIGHT * 5 / 8)
-	{
-		ft_pixel(e, x1 + 1, y2 - 1, 0x00FFFFFF);
-		ft_pixel(e, x1 - 1, y2 - 1, 0x00FFFFFF);
-	}
-	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24) && y2 <= HEIGHT * 9 / 16)
-		ft_pixel(e, x1, y2, 0x00FFFFFF);
-	while(y2-- > y1)
+	ft_raindrops(e, y2, x1);
+	while (y2-- > y1)
 		ft_pixel(e, x1, y2, 0xa0FFFFFF);
 	if (!y2 || !y1)
-	  return ;
-	while(y1-- > y2)
+		return ;
+	while (y1-- > y2)
 		ft_pixel(e, x1, y2, 0xa0FFFFFF);
 }

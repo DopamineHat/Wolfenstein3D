@@ -6,7 +6,7 @@
 #    By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/06 01:11:02 by rpagot            #+#    #+#              #
-#    Updated: 2017/10/22 03:51:15 by rpagot           ###   ########.fr        #
+#    Updated: 2017/10/23 05:55:34 by rpagot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LCFLAGS := -L./minilibx_macos -lmlx -framework OpenGL \
 
 
 
-INCLUDES := -I./minilibx_macos -I./includes -I./libft
+INCLUDES := -I./minilibx_macos -I./includes -I./libft/includes
 
 SRCS := main.c \
 		ft_parse.c \
@@ -31,7 +31,9 @@ SRCS := main.c \
 		raycasting.c \
 		ft_draw.c \
 		ft_hook_keys.c \
-		ft_rainclusterfuck.c
+		ft_rainclusterfuck.c \
+		ft_cal_ray_distance.c \
+		ft_init_thunder.c
 
 SRCSP := $(addprefix ./srcs/,  $(SRCS))
 OBJS = $(SRCS:.c=.o)

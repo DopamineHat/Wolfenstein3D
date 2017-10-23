@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_doublefree.c                                    :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/30 09:28:44 by adeletan          #+#    #+#             */
-/*   Updated: 2017/10/06 04:31:21 by rpagot           ###   ########.fr       */
+/*   Created: 2016/11/17 17:31:02 by rpagot            #+#    #+#             */
+/*   Updated: 2016/11/17 19:51:25 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_doublefree(char ***s, void (*f) (void *))
+int		ft_pow(int i, unsigned int j)
 {
-	size_t	index;
-
-	index = 0;
-	if (s == NULL || f == NULL || *s == NULL)
-		return ;
-	while ((*s)[index])
-	{
-		f((*s)[index]);
-		index++;
-	}
-	free(*s);
+	if (j == 0)
+		return (1);
+	else
+		return (i * ft_pow(i, --j));
 }

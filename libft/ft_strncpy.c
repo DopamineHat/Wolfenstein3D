@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 07:01:35 by adeletan          #+#    #+#             */
-/*   Updated: 2016/11/24 02:38:27 by adeletan         ###   ########.fr       */
+/*   Created: 2016/11/18 21:50:40 by rpagot            #+#    #+#             */
+/*   Updated: 2016/11/18 21:50:42 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	size_t index;
+	size_t i;
 	size_t limit;
 
-	index = 0;
+	i = 0;
 	limit = ft_strlen((char*)src);
-	while (index < len)
+	while (i < len)
 	{
-		if (index > limit)
-			dst[index] = '\0';
+		if (i > limit)
+			dst[i] = '\0';
 		else
-			dst[index] = src[index];
-		index++;
+			dst[i] = src[i];
+		i++;
 	}
 	return (dst);
 }

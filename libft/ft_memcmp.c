@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 20:15:06 by adeletan          #+#    #+#             */
-/*   Updated: 2016/11/24 02:31:31 by adeletan         ###   ########.fr       */
+/*   Created: 2016/11/18 21:36:08 by rpagot            #+#    #+#             */
+/*   Updated: 2016/11/18 21:36:10 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,15 @@
 
 int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	*copy1;
-	unsigned char	*copy2;
-	size_t			index;
+	size_t i;
 
-	copy1 = (unsigned char*)s1;
-	copy2 = (unsigned char*)s2;
-	if (s1 == s2)
-		return (0);
-	index = 0;
-	while (n--)
+	i = 0;
+	while (i < n)
 	{
-		if (copy1[index] != copy2[index])
-			return (copy1[index] - copy2[index]);
-		++index;
+		if (((unsigned char *)s1)[i] == ((unsigned char *)s2)[i])
+			++i;
+		else
+			return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
 	}
 	return (0);
 }

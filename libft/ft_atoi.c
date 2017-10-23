@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 02:29:32 by adeletan          #+#    #+#             */
-/*   Updated: 2016/11/24 02:29:09 by adeletan         ###   ########.fr       */
+/*   Created: 2016/11/18 21:24:44 by rpagot            #+#    #+#             */
+/*   Updated: 2016/11/18 21:24:49 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int		ft_atoi(char const *str)
 {
@@ -20,7 +22,7 @@ int		ft_atoi(char const *str)
 	s = 1;
 	x = 0;
 	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\v' || str[i] == '\f'
-			|| str[i] == '\n' || str[i] == '\r')
+		|| str[i] == '\n' || str[i] == '\r')
 		++i;
 	if (str[i] == '-' && str[i + 1] >= '0' && str[i + 1] <= '9')
 	{

@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_cal_ray_distance.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/18 21:49:42 by rpagot            #+#    #+#             */
-/*   Updated: 2016/11/18 21:49:44 by rpagot           ###   ########.fr       */
+/*   Created: 2017/10/22 19:06:47 by rpagot            #+#    #+#             */
+/*   Updated: 2017/10/22 19:26:02 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "wolf.h"
 
-char	*ft_strncat(char *s1, char const *s2, size_t n)
+void			ft_cal_ray_dist(t_env *e)
 {
-	size_t i;
-	size_t limit;
-	size_t i2;
-
-	i = 0;
-	i2 = 0;
-	limit = ft_strlen((char*)s2);
-	while (s1[i])
-		++i;
-	while (i2 < n && s2[i2])
+	if (e->map[e->ray.map.x][e->ray.map.y] > 0)
 	{
-		if (i2 < limit)
-			s1[i] = s2[i2];
-		++i2;
-		++i;
+		e->ray.hit = 1;
+		if (e->ray.hit_side == 0)
+		{
+			e->ray.dist = (e->ray.map.x - e->ray.pos.x + (1 - e->ray.step.x)
+					/ 2) / e->ray.dir.x;
+		}
+		else
+		{
+			e->ray.dist = (e->ray.map.y - e->ray.pos.y + (1 - e->ray.step.y)
+					/ 2) / e->ray.dir.y;
+		}
 	}
-	s1[i] = '\0';
-	return (s1);
 }

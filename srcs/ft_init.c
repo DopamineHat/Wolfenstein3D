@@ -6,33 +6,17 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:39:38 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/21 16:02:43 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/22 19:14:34 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-static void		init_thunderyellow(t_env *e)
-{
-	int i;
-
-	i = -1;
-	while(++i < WIDTH * HEIGHT)
-		e->mlx.addryellow[i] = 0x40FFFF00;
-}
-
-static void		init_thunder(t_env *e)
-{
-	int i;
-
-	i = -1;
-	while(++i < WIDTH * HEIGHT)
-		e->mlx.addrwhite[i] = 0xa0FFFFFF;
-}
 static void		init_img(t_env *e)
 {
 	int h;
 	int w;
+
 	if (open("./srcs/images/W_KEY_LITAF.xpm", O_RDONLY) > 0)
 		e->image.img0 = mlx_xpm_file_to_image(e->mlx.mlx,
 				"./srcs/images/W_KEY_LITAF.xpm", &w, &h);
@@ -46,6 +30,7 @@ static void		init_img(t_env *e)
 		e->image.img3 = mlx_xpm_file_to_image(e->mlx.mlx,
 				"./srcs/images/D_KEY_LITAF.xpm", &w, &h);
 }
+
 static void		init_player(t_env *e)
 {
 	e->player.pos.x = 0;
@@ -72,17 +57,17 @@ static void		init_mlx(t_env *e)
 	e->mlx.s_line = 0;
 	e->mlx.img = mlx_new_image(e->mlx.mlx, WIDTH, HEIGHT);
 	e->mlx.white = mlx_new_image(e->mlx.mlx, WIDTH, HEIGHT);
-	e->mlx.pxlwhite = mlx_get_data_addr(e->mlx.white, &(e->mlx.bpp), &(e->mlx.s_line),
-			&(e->mlx.ed));
+	e->mlx.pxlwhite = mlx_get_data_addr(e->mlx.white, &(e->mlx.bpp),
+			&(e->mlx.s_line), &(e->mlx.ed));
 	e->mlx.addrwhite = (int *)e->mlx.pxlwhite;
 	e->mlx.yellow = mlx_new_image(e->mlx.mlx, WIDTH, HEIGHT);
-	e->mlx.pxlyellow = mlx_get_data_addr(e->mlx.yellow, &(e->mlx.bpp), &(e->mlx.s_line),
-			&(e->mlx.ed));
+	e->mlx.pxlyellow = mlx_get_data_addr(e->mlx.yellow, &(e->mlx.bpp),
+			&(e->mlx.s_line), &(e->mlx.ed));
 	e->mlx.addryellow = (int *)e->mlx.pxlyellow;
 	init_thunder(e);
 	init_thunderyellow(e);
-	e->mlx.pxl = mlx_get_data_addr(e->mlx.img, &(e->mlx.bpp), &(e->mlx.s_line),
-			&(e->mlx.ed));
+	e->mlx.pxl = mlx_get_data_addr(e->mlx.img, &(e->mlx.bpp),
+			&(e->mlx.s_line), &(e->mlx.ed));
 	e->mlx.addrpxl = (int *)e->mlx.pxl;
 	e->mlx.next_frame = 0;
 	e->i = 0;
@@ -100,6 +85,6 @@ t_env			*init_env(void)
 	init_player(e);
 	init_mlx(e);
 	init_img(e);
-	e->rainrate =		1;
+	e->rainrate = 1;
 	return (e);
 }

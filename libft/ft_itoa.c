@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/05 00:35:25 by adeletan          #+#    #+#             */
-/*   Updated: 2017/10/20 10:35:59 by rpagot           ###   ########.fr       */
+/*   Created: 2016/11/18 21:32:21 by rpagot            #+#    #+#             */
+/*   Updated: 2016/11/18 21:32:24 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int		ft_count_size(int nb)
 {
 	int size;
 
-	size = 1;
+	size = 0;
 	if (nb < 0)
 	{
 		++size;
@@ -32,28 +32,25 @@ static int		ft_count_size(int nb)
 
 char			*ft_itoa(int n)
 {
-	char	*array;
-	size_t	index;
-	int		negative;
+	char	*l;
+	int		i;
 
-	negative = 0;
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	index = ft_count_size(n);
-	if ((array = (char*)malloc((index + 1) * sizeof(char))) == NULL)
-		return (NULL);;
-	array[index] = '\0';
+	i = ft_count_size(n);
+	if ((l = (char*)ft_memalloc((i + 2) * sizeof(char))) == NULL)
+		return (NULL);
+	l[i + 1] = '\0';
 	if (n < 0)
 	{
 		n = -n;
-		negative = 1;
+		l[0] = '-';
 	}
-	while (index != 0)
+	while (i >= 0 && !(l[0] == '-' && i == 0))
 	{
-		array[--index] = (n % 10) + '0';
+		l[i] = (n % 10) + '0';
 		n = n / 10;
+		--i;
 	}
-	if (negative == 1)
-		array[0] = '-';
-	return (array);
+	return (l);
 }

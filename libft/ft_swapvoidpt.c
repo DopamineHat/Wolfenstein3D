@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memnset.c                                       :+:      :+:    :+:   */
+/*   ft_swapvoid.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/01 08:32:30 by adeletan          #+#    #+#             */
-/*   Updated: 2016/12/01 08:34:01 by adeletan         ###   ########.fr       */
+/*   Created: 2016/11/17 18:54:07 by rpagot            #+#    #+#             */
+/*   Updated: 2016/11/17 19:54:06 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memnset(void *b, int c, size_t len, size_t n)
+void	ft_swapvoidpt(void **a, void **b)
 {
-	char	*d;
-	size_t	index;
+	void *c;
 
-	d = b;
-	index = n;
-	while (len--)
-	{
-		d[index++] = (unsigned char)c;
-	}
-	b = d;
-	return (b);
+	c = *a;
+	*a = *b;
+	*b = c;
 }

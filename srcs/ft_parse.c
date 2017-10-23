@@ -6,11 +6,24 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:40:48 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/21 20:08:40 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/22 19:02:16 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
+
+static void		ft_read_line_free(char *line,
+		char **line_split, int x, t_env *e)
+{
+	free(line_split[x]);
+	free(line_split);
+	if (x != e->map_width)
+	{
+		free(line);
+		error_map();
+	}
+	free(line);
+}
 
 static void		read_pos(int fd, t_env *e)
 {
@@ -34,7 +47,7 @@ static void		read_pos(int fd, t_env *e)
 			e->player.pos.y < 0 || e->player.pos.x >= e->map_width ||
 			e->player.pos.y >= e->map_width)
 		error_map();
-	free (line);
+	free(line);
 	while (i >= 0)
 		free(line_split[i--]);
 	free(line_split);
@@ -62,14 +75,7 @@ static void		read_line(char *line, int y, t_env *e)
 			error_map();
 		free(line_split[x]);
 	}
-	free(line_split[x]);
-	free(line_split);
-	if (x != e->map_width)
-	{
-		free(line);
-		error_map();
-	}
-	free(line);
+	ft_read_line_free(line, line_split, x, e);
 }
 
 static int		read_file(int fd, t_env *e)
@@ -79,7 +85,7 @@ static int		read_file(int fd, t_env *e)
 
 	y = -1;
 	read_pos(fd, e);
-	if(!(e->map = (int **)malloc(sizeof(int **) * e->map_height)))
+	if (!(e->map = (int **)malloc(sizeof(int **) * e->map_height)))
 		error_malloc();
 	while (get_next_line(fd, &line) == 1)
 		read_line(line, ++y, e);

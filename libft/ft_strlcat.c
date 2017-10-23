@@ -3,34 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 20:48:20 by adeletan          #+#    #+#             */
-/*   Updated: 2016/11/24 02:37:21 by adeletan         ###   ########.fr       */
+/*   Created: 2016/11/18 21:48:12 by rpagot            #+#    #+#             */
+/*   Updated: 2016/11/18 21:48:15 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+size_t		ft_strlcat(char *dst, const char *src, size_t n)
 {
 	size_t i;
-	size_t index;
-	size_t index2;
+	size_t l1;
+	size_t l2;
 
-	index = ft_strlen(dst);
-	index2 = ft_strlen(src);
 	i = 0;
-	if (size == 0)
-		return (index2 + size);
-	while (src[i] != '\0' && ((index + i) < (size - 1)))
+	l1 = ft_strlen(dst);
+	l2 = ft_strlen(src);
+	if (n < l1)
+		return (n + l2);
+	while (*src && (l1 + i + 1) < n)
 	{
-		dst[index + i] = src[i];
-		i++;
+		dst[l1 + i] = src[i];
+		++i;
 	}
-	dst[index + i] = '\0';
-	if (index < size)
-		return (index2 + index);
-	else
-		return (index2 + size);
+	dst[l1 + i] = '\0';
+	return (l1 + l2);
 }

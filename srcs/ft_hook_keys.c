@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:39:23 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/21 17:10:27 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/23 02:53:33 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ static void		ft_movements(int k, t_env *e)
 		if (e->rainrate == 0)
 			e->rainrate = 32;
 		else
-			if (e->rainrate > .02f)
+		{
+			if (e->rainrate > .001f)
 				e->rainrate *= 0.8f;
+		}
 	}
 }
 
@@ -49,9 +51,9 @@ int				ft_key_move(int k, t_env *e)
 		exit(0);
 	}
 	if (e->rainrate)
-		e->brightness =			((int)sqrt((double)e->rainrate) << 11)
-							+	((int)sqrt((double)e->rainrate) << 19)
-							+	((int)sqrt((double)e->rainrate) << 3);
+		e->brightness = ((int)sqrt((double)e->rainrate) << 11)
+					+ ((int)sqrt((double)e->rainrate) << 19)
+					+ ((int)sqrt((double)e->rainrate) << 3);
 	else
 		e->brightness = 0x00303030;
 	return (0);

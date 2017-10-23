@@ -3,18 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 19:19:54 by adeletan          #+#    #+#             */
-/*   Updated: 2016/11/24 02:29:13 by adeletan         ###   ########.fr       */
+/*   Created: 2016/11/10 09:04:13 by rpagot            #+#    #+#             */
+/*   Updated: 2016/11/18 21:25:25 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
 void	ft_bzero(void *s, size_t n)
 {
-	if (n == 0)
-		return ;
-	ft_memset(s, 0, n);
+	size_t i;
+
+	i = 0;
+	while (n > i)
+	{
+		((char *)s)[i] = 0;
+		++i;
+	}
 }

@@ -3,38 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 03:12:07 by adeletan          #+#    #+#             */
-/*   Updated: 2016/12/06 14:55:40 by adeletan         ###   ########.fr       */
+/*   Created: 2016/11/18 21:59:40 by rpagot            #+#    #+#             */
+/*   Updated: 2016/11/18 22:24:53 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(const char *s1, const char *s2)
+char	*ft_strstr(char const *big, char const *little)
 {
-	size_t i;
-	size_t pos;
-	size_t len;
+	int		i;
+	int		i2;
 
 	i = 0;
-	pos = 0;
-	len = 0;
-	while (s2[len] != '\0')
-		len++;
-	if (len == 0)
-		return ((char *)s1);
-	while (s1[i])
+	i2 = -1;
+	if (!(little[i]))
+		return ((char*)big);
+	while (big[i])
 	{
-		while (s2[pos] == s1[i + pos])
-		{
-			if (pos == len - 1)
-				return ((char *)s1 + i);
-			pos++;
-		}
-		pos = 0;
-		i++;
+		if (big[i] == little[0])
+			if (!(ft_strcmp(ft_strsub(big, i, ft_strlen(little)),
+						little)) && i2 == -1)
+				i2 = i;
+		++i;
 	}
-	return (0);
+	if (i2 == -1)
+		return (NULL);
+	return ((char*)(&big[i2]));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/04 22:55:53 by adeletan          #+#    #+#             */
-/*   Updated: 2017/03/10 07:18:28 by adeletan         ###   ########.fr       */
+/*   Created: 2016/11/18 21:40:46 by rpagot            #+#    #+#             */
+/*   Updated: 2017/05/04 05:06:07 by rolemass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_putstr(char const *s)
 {
-	if (s == NULL)
-		return ;
-	while (*s)
-		write(1, s++, 1);
+	size_t size;
+
+	size = ft_strlen(s);
+	write(1, s, size);
 }

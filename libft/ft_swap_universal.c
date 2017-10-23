@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lpause.c                                        :+:      :+:    :+:   */
+/*   ft_swap_universal.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apopinea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 08:50:47 by apopinea          #+#    #+#             */
-/*   Updated: 2016/12/09 00:38:41 by adeletan         ###   ########.fr       */
+/*   Created: 2016/11/20 02:45:20 by rpagot            #+#    #+#             */
+/*   Updated: 2016/11/20 03:51:07 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_lpause(void)
+void	ft_swap_universal(void *a, void *b, size_t n)
 {
-	read(0, NULL, 1);
+	unsigned char tmp;
+
+	while (n-- > 0 && a && b)
+	{
+		tmp = *(unsigned char *)a;
+		*(unsigned char *)a = *(unsigned char *)b;
+		*(unsigned char *)b = tmp;
+		++a;
+		++b;
+	}
 }

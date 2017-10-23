@@ -6,16 +6,17 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 05:41:22 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/21 20:06:48 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/23 05:45:14 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-static void		ft_rain(t_env *e)
+void			ft_rain(t_env *e)
 {
 	int x;
 	int i;
+	float stockdist;
 
 	i = 0;
 	e->i = WIDTH / 64;
@@ -23,9 +24,10 @@ static void		ft_rain(t_env *e)
 	{
 		while (e->i < WIDTH)
 		{
-			while (e->mlx.stockdist[e->i] < HEIGHT * 2)
+			stockdist = (float)e->mlx.stockdist[e->i];
+			while (stockdist < HEIGHT * 2)
 			{
-				e->mlx.stockdist[e->i] *= e->rainrate + 1;
+				stockdist *= e->rainrate + 1.0f;
 				x = (rand() % (WIDTH / 32 - 1)) + (WIDTH / 32) * i + WIDTH / 64;
 				ft_rainprocess(e, x);
 			}
@@ -41,7 +43,8 @@ static void		ft_thunder(t_env *e)
 	if (e->rainrate && e->rainrate < .2f)
 	{
 		if (e->time && !(e->time % 8) && (e->mlx.next_frame < 1))
-			mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->mlx.yellow, 0, 0);
+			mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->mlx.yellow,
+					0, 0);
 		if (e->time && !(e->time % 8) && (e->mlx.next_frame < 16)
 				&& e->mlx.next_frame > 4)
 			mlx_put_image_to_window(e->mlx.mlx, e->mlx.win, e->mlx.white, 0, 0);
@@ -84,10 +87,10 @@ static void		ft_display_info(t_env *e)
 	mlx_string_put(e->mlx.mlx, e->mlx.win, 60, 10, 0x00FFFFFF, tmp);
 	mlx_string_put(e->mlx.mlx, e->mlx.win, 10, 40, 0x00FFFFFF,
 			"TIME:");
-	free (tmp);
+	free(tmp);
 	tmp = ft_itoa((int)e->time);
 	mlx_string_put(e->mlx.mlx, e->mlx.win, 70, 40, 0x00FFFFFF, tmp);
-	free (tmp);
+	free(tmp);
 	ft_print_inputs(e);
 	ft_print_weather(e);
 	ft_print_position(e);

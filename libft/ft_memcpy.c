@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 19:23:29 by adeletan          #+#    #+#             */
-/*   Updated: 2016/11/24 02:31:52 by adeletan         ###   ########.fr       */
+/*   Created: 2016/11/18 21:35:25 by rpagot            #+#    #+#             */
+/*   Updated: 2016/11/18 21:35:27 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,13 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned char	*patate;
-	unsigned char	*carotte;
-	size_t			index;
+	size_t i;
 
-	patate = (unsigned char*)dst;
-	carotte = (unsigned char*)src;
-	index = 0;
-	while (n--)
+	i = 0;
+	while (i < n)
 	{
-		patate[index] = carotte[index];
-		++index;
+		((char *)dst)[i] = ((char *)src)[i];
+		++i;
 	}
-	dst = patate;
 	return (dst);
 }

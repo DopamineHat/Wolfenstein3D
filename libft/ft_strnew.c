@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adeletan <adeletan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/05 08:00:07 by adeletan          #+#    #+#             */
-/*   Updated: 2016/11/24 02:38:53 by adeletan         ###   ########.fr       */
+/*   Created: 2016/11/18 21:51:32 by rpagot            #+#    #+#             */
+/*   Updated: 2017/05/10 10:59:24 by rolemass         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 char	*ft_strnew(size_t size)
 {
 	char	*array;
-	size_t	index;
+	size_t	i;
 
-	index = 0;
-	if (!(array = (char*)malloc(size + 1 * sizeof(char))))
+	i = 0;
+	if (!(array = (char*)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
-	array[size + 1] = '\0';
-	while (index <= size)
+	array[size] = '\0';
+	while (i < size)
 	{
-		array[index] = '\0';
-		++index;
+		array[i] = '\0';
+		++i;
 	}
 	return (array);
 }
