@@ -6,7 +6,7 @@
 /*   By: rpagot <rpagot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 17:42:31 by rpagot            #+#    #+#             */
-/*   Updated: 2017/10/23 06:01:19 by rpagot           ###   ########.fr       */
+/*   Updated: 2017/10/24 22:12:23 by rpagot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,6 @@ void		ft_raindrops(t_env *e, int y2, int x1)
 	else if (!(e->mlx.addrpxl[x1 + y2 * WIDTH] << 24)
 				&& (y2 > HEIGHT * 5 / 8) && y2 <= HEIGHT * 3 / 4)
 	{
-		ft_pixel(e, x1, y2 + 2, 0x00FFFFFF);
-		ft_pixel(e, x1 + 2, y2, 0x00FFFFFF);
-		ft_pixel(e, x1 - 2, y2, 0x00FFFFFF);
 		e->mlx.addrpxl[x1 + (y2 + 2) * WIDTH] = 0x00FFFFFF;
 		e->mlx.addrpxl[x1 + 2 + y2 * WIDTH] = 0x00FFFFFF;
 		e->mlx.addrpxl[x1 - 2 + y2 * WIDTH] = 0x00FFFFFF;
